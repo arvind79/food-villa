@@ -1,42 +1,46 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-// Manipulate the HTML DOM using Javscript
-// const heading = document.createElement("h1");
-// heading.innerHTML = "Namaste Everyone";
-// const root = document.getElementById("root");
-// root.appendChild(heading);
-
-// Manipulate the HTML DOM using React
-
-// Create nested React Elements
-
-const heading = React.createElement(
-    "h1",
-    {
-        id: "title",
-        key: "h1"
-    },
-    "Heading 1"
-)
-
-// React.createElement => Object => HTML(DOM)
-
-const heading2 = (
+//Element
+const title = (
     <h2 id="title" key="h2">
         Namaste React
     </h2>
-)
+);
 
-// JSX => React.createElement => Object => HTML(DOM)
+//Functional Component - this is returning the JSX and this component has arrow function
+const Title = () => (
+    <h2 id="title" key="h2">
+        Namaste React
+    </h2>
+);
 
-const container = React.createElement(
-    "div",
-    {
-        id: "container",
-    },
-    [heading, heading2]
-)
+// React Component
+// - Functional - NEW - I will use this most of the time
+// - Class Based Component - OLD
 
-const root = ReactDOM.createRoot(document.getElementById("root"))
-root.render(container)
+// Functional Components
+// Name of component starts with capital letters - it's not mandatory, but it is good practice
+// Functional component is a normal javascript function
+// It is just returning a piece of jsx or react createElement
+
+// <Title /> is known as Composing Components or Component Composition
+const HeaderComponent = () => {
+    return (
+        <div>
+            {title}
+            <Title />
+            {/*OR  {Title()}  Inside these outer curly braces it is javascript*/}
+            {/* {We can write any piece of javascript code inside these curly braces} */}
+            {console.log(1+2+5, "any js code")}
+            <h1>Namaste React functional component</h1>
+            <h2>This is a h2 tag</h2>
+        </div>
+    );
+}; 
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(heading); //heading is react element
+root.render(<HeaderComponent />) //HeaderComponent is a functional component
+// OR root.render(HeaderComponent())
