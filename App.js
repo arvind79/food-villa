@@ -15,17 +15,20 @@ const heading = React.createElement(
     "h1",
     {
         id: "title",
+        key: "h1"
     },
     "Heading 1"
 )
 
-const heading2 = React.createElement(
-    "h2",
-    {
-        id: "title",
-    },
-    "Heading 2"
+// React.createElement => Object => HTML(DOM)
+
+const heading2 = (
+    <h2 id="title" key="h2">
+        Namaste React
+    </h2>
 )
+
+// JSX => React.createElement => Object => HTML(DOM)
 
 const container = React.createElement(
     "div",
