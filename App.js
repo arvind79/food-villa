@@ -3,12 +3,14 @@ import ReactDOM from "react-dom/client";
 import logo from "./assets/img/foodvilla.png"
 
 const Title = () => (
-    <img className="logo" src={logo} alt="logo"></img>
+    <a href="/">
+        <img className="logo" src={logo} alt="logo"/>
+    </a>
 );
 
 const Header = () => {
     return (
-        <div>
+        <div className="header">
             <Title />
             <div className="nav-items">
                 <ul>
@@ -22,9 +24,22 @@ const Header = () => {
     );
 }; 
 
+const RestrauntCard = () => {
+    return (
+        <div className="card">
+            <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/28fb13049b4e55297bb3f703cde63c35"/>
+            <h2>Burger King</h2>
+            <h3>Burgers, American</h3>
+            <h4>4.2 stars</h4>
+        </div>
+    )
+}
+
 const Body = () => {
     return (
-        <h4>Body</h4>
+        <div>
+            <RestrauntCard />
+        </div>
     )
 }
 
