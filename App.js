@@ -734,12 +734,11 @@ const RestaurantCard = ({name, cuisines, cloudinaryImageId, lastMileTravelString
 const Body = () => {
     return (
         <div className="restaurant-list">
-            {/* Props - Properties, they are like arguments=> RestaurantCard( restaurantList[0] ) */}
-            <RestaurantCard {...restaurantList[0].data} />   
-            <RestaurantCard {...restaurantList[1].data} />
-            <RestaurantCard {...restaurantList[2].data} />
-            <RestaurantCard {...restaurantList[3].data} />
-            <RestaurantCard {...restaurantList[4].data} />
+			{
+				restaurantList.map((restaurant) => {
+					return <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+				})
+			}
         </div>
     )
 }
