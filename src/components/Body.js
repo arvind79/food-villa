@@ -4,8 +4,8 @@ import Shimmer from "./Shimmer"
 import {useState, useEffect} from "react"
 
 function filterData(searchText, restaurants) {
-  return restaurants.filter((restaurant) => restaurant.data.name.includes(searchText)
-  )
+  return restaurants.filter((restaurant) => 
+    restaurant?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase()))
 }
 
 const Body = () => {
@@ -13,29 +13,19 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([])
   const [searchText, setSearchText] = useState("")
 
-  // console.log("body")
-  // console.log("rest", allRestaurants)
-  // console.log("body")
-
   useEffect(() => {
-    //API Call 
     getRestaurants()
   }, [])
 
   async function getRestaurants() {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&page_type=DESKTOP_WEB_LISTING")
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&page_type=DESKTOP_WEB_LISTING")
     const json = await data.json()
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards)
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards)
   }
 
-
   //not render component(then early return)
-  if(!allRestaurants) return null   //incase if allRestaurants not created in time
-
-  //Conditional Rendering
-  //if Restaurant is empty => shimmer UI
-  //if Restaurant has data => actual data UI
+  if(!allRestaurants) return null   
 
   return (allRestaurants.length === 0) ? <Shimmer /> : (
     <>
@@ -57,9 +47,11 @@ const Body = () => {
           }}
         >Search</button>
       </div>
-
+      
+      
       <div className="restaurant-list">
       {
+        (filteredRestaurants?.length === 0) ? (<h1>No Result Found</h1>) : 
         filteredRestaurants.map((restaurant) => {
           return (
             <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
