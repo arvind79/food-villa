@@ -13,6 +13,10 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([])
   const [searchText, setSearchText] = useState("")
 
+  // console.log("body")
+  // console.log("rest", allRestaurants)
+  // console.log("body")
+
   useEffect(() => {
     //API Call 
     getRestaurants()
@@ -24,6 +28,14 @@ const Body = () => {
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards)
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards)
   }
+
+
+  //not render component(then early return)
+  if(!allRestaurants) return null   //incase if allRestaurants not created in time
+
+  //Conditional Rendering
+  //if Restaurant is empty => shimmer UI
+  //if Restaurant has data => actual data UI
 
   return (allRestaurants.length === 0) ? <Shimmer /> : (
     <>
