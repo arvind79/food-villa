@@ -1,17 +1,19 @@
-import React from "react"
+import React, { Children } from "react"
 import ReactDOM from "react-dom/client"
 import Header from "./components/Header"
 import Body from "./components/Body"
 import Footer from "./components/Footer"
 import About from "./components/About"
 import Error from "./components/Error"
-import {createBrowserRouter, RouterProvider, } from "react-router-dom"
+import Contact from "./components/Contact"
+import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom"
 
 const AppLayout = () => {
   return (
     <>
       <Header />
-      <Body />
+      {/* Outlet - this is the Outlet where we have to fill in different pages. All the children acc. to the route go into the outlet*/}
+      <Outlet />
       <Footer />
     </>
   )
@@ -21,11 +23,21 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-    errorElement: <Error />
-  },
-  {
-    path: "/about",
-    element: <About />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      }
+    ]
   },
 ])
 
