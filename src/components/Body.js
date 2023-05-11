@@ -48,7 +48,6 @@ const Body = () => {
         >Search</button>
       </div>
       
-      
       <div className="restaurant-list">
       {
         (filteredRestaurants?.length === 0) ? (<h1>No Result Found</h1>) : 

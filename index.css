@@ -34,3 +34,37 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.shimmer-card {
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+}
+
+.shimmer-img {
+    width: 100%;
+    height: 50%;
+    background-color: lightgray;;
+}
+
+.shimmer-title {
+    width: 70%;
+    height: 10%;
+    margin: 15px 0;
+    background-color: lightgray;
+}
+
+.shimmer-cuisines {
+    width: 80%;
+    height: 9%;
+    margin: 15px 0;
+    background-color: lightgray;
+}
+
+.shimmer-distance {
+    width: 65%;
+    height: 8%;
+    margin: 15px 0;
+    background-color: lightgray;
+}
