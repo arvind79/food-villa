@@ -6,13 +6,13 @@ import Footer from "./components/Footer"
 import About from "./components/About"
 import Error from "./components/Error"
 import Contact from "./components/Contact"
+import RestaurantMenu from "./components/RestaurantMenu"
 import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom"
 
 const AppLayout = () => {
   return (
     <>
       <Header />
-      {/* Outlet - this is the Outlet where we have to fill in different pages. All the children acc. to the route go into the outlet*/}
       <Outlet />
       <Footer />
     </>
@@ -36,6 +36,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/restaurant/:resId",
+        element: <RestaurantMenu />,
       }
     ]
   },
