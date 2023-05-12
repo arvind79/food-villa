@@ -28,9 +28,9 @@ const RestaurantMenu = () => {
   // console.log(restaurant.data.cards[0].card.card.info)
   const restaurantBasePath = restaurant.data.cards[0].card.card.info
 
-  // console.log(restaurant.data.cards[2].groupedCard.cardGroupMap.REGULAR)
+  console.log(restaurant.data.cards[2].groupedCard.cardGroupMap.REGULAR)
   const restaurantPathForMenus = restaurant.data.cards[2].groupedCard.cardGroupMap.REGULAR
-  // console.log(restaurantPathForMenus.cards[1].card.card.itemCards)
+  console.log(restaurantPathForMenus.cards[1].card.card.itemCards)
   const restaurantPathForMenusOneType = restaurantPathForMenus.cards[1].card.card.itemCards
 
   return (
@@ -47,8 +47,8 @@ const RestaurantMenu = () => {
       <div>
         <h1>Menu</h1>
         <ul>
-          {restaurantPathForMenusOneType.map((item) => {
-            return <li key={item.card.info.name}>{item.card.info.name}</li>
+          {restaurantPathForMenusOneType?.map((item) => {
+            return <li key={item?.card?.info?.name}>{item?.card?.info?.name}</li>
           })}
         </ul>
       </div>
