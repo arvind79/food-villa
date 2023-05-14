@@ -1,9 +1,14 @@
-import React from "react"
+import React from "react";
 
 class Profile extends React.Component {
-    render() {
-        return <h1>Profile Class Component</h1>
-    }
+  render() {
+    return (
+      <div>
+        <h1>Profile Class Component</h1>
+        <h2>Name: {this.props.name}</h2>
+      </div>
+    );
+  }
 }
 
-export default Profile
+export default Profile;
