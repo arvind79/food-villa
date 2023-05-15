@@ -10,29 +10,29 @@ class Profile extends React.Component {
         location: "Dummy Location"
       }
     }
-    console.log("Child - Constructor " + this.props.name)
+    // console.log("Child - Constructor " + this.props.name)
   }
 
   async componentDidMount() {
-    const data = await fetch("https://api.github.com/users/arvind79")
-    const json = await data.json()
-    console.log(json)
-    this.setState({
-      userInfo: json,
-    })
-    console.log("Child - componentDidMount " + this.props.name)
+    this.timer = setInterval(() => {
+      console.log("setInterval in Class")
+    }, 1000)
+
+    // console.log("Child - componentDidMount " + this.props.name)
   }
 
   componentDidUpdate() {
-    console.log("ComponentDidUpdate")
+    // console.log("ComponentDidUpdate")
   }
 
   componentWillUnmount() {
+    //to step above timer setInterval, we have to use componentWillUnmount, so that change page stops that
+    clearInterval(this.timer)
     console.log("ComponentWillUnmount")
   }
 
   render() {
-    console.log("Child - render " + this.props.name)
+    // console.log("Child - render " + this.props.name)
     return (
       <div>
         <h1>Profile Class Component</h1>

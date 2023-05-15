@@ -5,9 +5,8 @@ const Profile = (props) => {
 
   useEffect(() => {
     // API call
-    //console.log("useEffect()")
+    
   })
-  //console.log("render")
 
   return (
     <div>
