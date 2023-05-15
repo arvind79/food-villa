@@ -5,14 +5,30 @@ class Profile extends React.Component {
     super(props)
     //Create state
     this.state = {
-      count: 0,
-      count2: 0,
+      userInfo: {
+        name: "Dummy Name",
+        location: "Dummy Location"
+      }
     }
     console.log("Child - Constructor " + this.props.name)
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const data = await fetch("https://api.github.com/users/arvind79")
+    const json = await data.json()
+    console.log(json)
+    this.setState({
+      userInfo: json,
+    })
     console.log("Child - componentDidMount " + this.props.name)
+  }
+
+  componentDidUpdate() {
+    console.log("ComponentDidUpdate")
+  }
+
+  componentWillUnmount() {
+    console.log("ComponentWillUnmount")
   }
 
   render() {
@@ -20,13 +36,9 @@ class Profile extends React.Component {
     return (
       <div>
         <h1>Profile Class Component</h1>
-        <h2>Name: {this.props.name}</h2>
-        <h2>Count: {this.state.count}</h2>
-        <button onClick={() => {
-          this.setState({
-            count: 1,
-          })
-        }}>setCount</button>
+        <img src={this.state.userInfo.avatar_url} />
+        <h2>Name: {this.state.userInfo.name}</h2>
+        <h2>Location: {this.state.userInfo.location}</h2>
       </div>
     );
   }

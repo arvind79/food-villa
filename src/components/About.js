@@ -21,7 +21,7 @@ const About2 = () => {
 class About extends React.Component {
   constructor(props) {
     super(props)
-    console.log("Parent - constructor")
+    // console.log("Parent - constructor")
   }
 
   componentDidMount() {
@@ -38,7 +38,7 @@ class About extends React.Component {
           This is about the page which user can see to know about this website
         </p>
         <Profile name={"First Child"} />
-        <Profile name={"Second Child"} />
+        {/* <Profile name={"Second Child"} /> */}
       </div>
     )
   }
