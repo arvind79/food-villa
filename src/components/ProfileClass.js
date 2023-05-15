@@ -8,15 +8,15 @@ class Profile extends React.Component {
       count: 0,
       count2: 0,
     }
-    console.log("Constructor")
+    console.log("Child - Constructor")
   }
 
   componentDidMount() {
-    console.log("componentDidMount")
+    console.log("Child - componentDidMount")
   }
 
   render() {
-    console.log("render")
+    console.log("Child - render")
     return (
       <div>
         <h1>Profile Class Component</h1>
