@@ -14,9 +14,9 @@ class Profile extends React.Component {
   }
 
   async componentDidMount() {
-    this.timer = setInterval(() => {
-      console.log("setInterval in Class")
-    }, 1000)
+    // this.timer = setInterval(() => {
+    //   console.log("setInterval in Class")
+    // }, 1000)
 
     // console.log("Child - componentDidMount " + this.props.name)
   }
@@ -27,8 +27,8 @@ class Profile extends React.Component {
 
   componentWillUnmount() {
     //to step above timer setInterval, we have to use componentWillUnmount, so that change page stops that
-    clearInterval(this.timer)
-    console.log("ComponentWillUnmount")
+    // clearInterval(this.timer)
+    // console.log("ComponentWillUnmount")
   }
 
   render() {
