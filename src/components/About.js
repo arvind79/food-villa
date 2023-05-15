@@ -37,7 +37,8 @@ class About extends React.Component {
         <p>
           This is about the page which user can see to know about this website
         </p>
-        <Profile name={"ClassBased"} />
+        <Profile name={"First Child"} />
+        <Profile name={"Second Child"} />
       </div>
     )
   }
