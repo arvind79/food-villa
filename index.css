@@ -72,3 +72,19 @@
 .restaurant-menu {
     display: flex;
 }
+
+.restaurant-menu-items {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    border: 1px solid red;
+}
+
+.restaurant-menu-items img {
+    width: 100px;
+}
+
+.restaurant-menu-items h4,
+.restaurant-menu-items p {
+    margin: 0;
+}

@@ -1,37 +1,25 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { IMG_CDN_URL } from "../constants";
-import Shimmer from "./Shimmer";
+import { useParams } from "react-router-dom"
+import { IMG_CDN_URL, MENU_ITEM_IMG_CDN_URL } from "../constants"
+import Shimmer from "./Shimmer"
+import useRestaurant from "../utils/useRestaurant"
 
 const RestaurantMenu = () => {
   //reading a dynamic URL params
   const params = useParams();
   const { resId } = params;
 
-  const [restaurant, setRestaurant] = useState(null);
-
-  useEffect(() => {
-    getRestaurantInfo();
-  }, []);
-
-  async function getRestaurantInfo() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=" + resId
-    );
-    const json = await data.json();
-    // console.log(json);
-    setRestaurant(json);
-  }
+  const restaurant = useRestaurant(resId)
 
   if(restaurant === null) return <Shimmer />
 
   // console.log(restaurant.data.cards[0].card.card.info)
   const restaurantBasePath = restaurant.data.cards[0].card.card.info
 
-  console.log(restaurant.data.cards[2].groupedCard.cardGroupMap.REGULAR)
+  // console.log(restaurant.data.cards[2].groupedCard.cardGroupMap.REGULAR)
   const restaurantPathForMenus = restaurant.data.cards[2].groupedCard.cardGroupMap.REGULAR
-  console.log(restaurantPathForMenus.cards[1].card.card.itemCards)
-  const restaurantPathForMenusOneType = restaurantPathForMenus.cards[1].card.card.itemCards
+  // console.log(restaurantPathForMenus.cards)
+  const restaurantPathForMenusOneType = restaurantPathForMenus.cards//.card.card.itemCards
+  // console.log(restaurantPathForMenusOneType[1]?.card?.card?.itemCards)
 
   return (
     <div className="restaurant-menu">  
@@ -44,11 +32,26 @@ const RestaurantMenu = () => {
         <h3>{restaurantBasePath.avgRating} stars</h3>
         <h3>{restaurantBasePath.costForTwoMessage}</h3>
       </div>
+      
       <div>
         <h1>Menu</h1>
         <ul>
-          {restaurantPathForMenusOneType?.map((item) => {
-            return <li key={item?.card?.info?.name}>{item?.card?.info?.name}</li>
+          {restaurantPathForMenusOneType?.map((groupOfItems) => {
+            return (
+              groupOfItems?.card?.card?.itemCards?.map((item) => {
+                let itemStart = item?.card?.info
+                let itemPrice = item?.card?.info?.price / 100
+                return (
+                  <li key={itemStart?.name} className="restaurant-menu-items">
+                    {itemStart?.name}
+                    <img src={MENU_ITEM_IMG_CDN_URL + itemStart?.imageId}/>
+                    <h4>{itemPrice}</h4>
+                    <p>{itemStart?.description}</p>
+                  </li>
+
+                )
+              })
+            )
           })}
         </ul>
       </div>
